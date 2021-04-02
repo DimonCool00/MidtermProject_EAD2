@@ -33,6 +33,15 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>logFilter</filter-name>
+        <filter-class>com.example.MidtermProject_EAD2.filters.UserFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>logFilter</filter-name>
+        <url-pattern>/UserLogoutServlet</url-pattern>
+    </filter-mapping>
     <servlet>
         <description></description>
         <display-name>AddRoomServlet</display-name>
@@ -53,5 +62,6 @@
         <servlet-name>RoomServlet</servlet-name>
         <url-pattern>/RoomServlet</url-pattern>
     </servlet-mapping>
+
 
 </web-app>
