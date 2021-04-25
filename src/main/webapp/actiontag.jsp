@@ -71,5 +71,6 @@
     <jsp:getProperty name="totalPrice" property="id" />
     <jsp:getProperty name="totalPrice" property="name" />
 </div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

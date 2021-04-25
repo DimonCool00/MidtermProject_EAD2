@@ -1,6 +1,7 @@
 package com.example.MidtermProject_EAD2.models;
 
 public class Room {
+
     private String roomName;
     private String roomPrice;
     private String description;

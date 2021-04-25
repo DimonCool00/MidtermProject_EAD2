@@ -62,5 +62,6 @@
     <c:out value="${'This text we print with use taglib derectives.'}"/>
 
 </div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

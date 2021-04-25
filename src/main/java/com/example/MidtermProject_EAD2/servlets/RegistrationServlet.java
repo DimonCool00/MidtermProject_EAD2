@@ -1,6 +1,7 @@
 package com.example.MidtermProject_EAD2.servlets;
 
 import com.example.MidtermProject_EAD2.database.Connect;
+import com.example.MidtermProject_EAD2.exception.EmailException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +30,9 @@ public class RegistrationServlet extends HttpServlet {
         Connection connection = Connect.getConnection();
 
         try {
+            if(!email.matches("^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")){
+                throw new EmailException("Incorrect Email format");
+            }
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Customers( name, password, email, reppassword, phone)  VALUES (?,?,?,?,?)");
             preparedStatement.setString(1, fullName);
             preparedStatement.setString(2, password);

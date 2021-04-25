@@ -23,11 +23,21 @@ public class RoomServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Room> roomsList = new ArrayList<>();
+        List<Room> roomList = new ArrayList<>();
         Connection connection = Connect.getConnection();
 
+        String userId = null;
+        Cookie ck[] = request.getCookies();
+
+        if (ck != null) {
+            int index = 0;
+            while (!ck[index].getName().equals("userId")) {
+                index++;
+            }
+            userId = ck[index].getValue();
+        }
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Rooms12");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Rooms12 ORDER BY id");
 
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -41,10 +51,10 @@ public class RoomServlet extends HttpServlet {
                 room.setPhoneNum(resultSet.getString("phone"));
                 room.setRoomType(resultSet.getString("roomtype"));
 
-                roomsList.add(room);
+                roomList.add(room);
             }
 
-            request.setAttribute("RoomList", roomsList);
+            request.setAttribute("RoomList", roomList);
             request.getRequestDispatcher("rooms.jsp").include(request, response);
 
 
